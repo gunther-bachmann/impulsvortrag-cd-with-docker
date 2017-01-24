@@ -1,0 +1,258 @@
+#+TITLE: Continuous Delivery mit Docker
+#+AUTHOR: Gunther Bachmann
+#+EMAIL: gunther.bachmann@itemis.de
+#+OPTIONS: reveal_slide_number:nil 
+#+OPTIONS: reveal_single_file:nil
+#+OPTIONS: num:nil 
+#+OPTIONS: toc:nil
+#+OPTIONS: reveal_title_slide:nil
+#+OPTIONS: reveal_center:nil
+#+REVEAL_THEME: solarized
+#+REVEAL_HLEVEL: 1
+#+REVEAL_EXTRA_CSS: ./local.css
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#
+# generate via C-c C-e R R, then open vortrag.html
+# 
+# o - for overview
+# f - for full screen
+# s - open speaker notes in next window
+#
+# to print: open html file with ?print-pdf in chrome, then print
+#
+# references:
+#    https://github.com/yjwen/org-reveal
+#    https://github.com/hakimel/reveal.js
+# examples:
+#    https://raw.githubusercontent.com/jr0cket/slides/gh-pages/template-jr0cket.org
+#    https://raw.githubusercontent.com/jr0cket/slides/gh-pages/a-taste-of-clojure-at-lightspeed.org
+#    https://raw.githubusercontent.com/yjwen/org-reveal/master/Readme.org
+# css-reference: 
+#    http://www.w3schools.com/css/css_howto.asp
+# tutorial:
+#    http://jr0cket.co.uk/2013/10/create-cool-slides--Org-mode-Revealjs.html
+#    http://nwidger.github.io/blog/post/making-a-reveal.js-presentation-with-org-reveal/
+# 
+* Continuous Delivery mit Docker
+  #+REVEAL_HTML: <h3>Innovative Softwareentwicklung</h3>
+  #+REVEAL_HTML: <p style="text-align: left; margin-top:30%">Gunther Bachmann<br/>gunther.bachmann@itemis.de<br/>xing.com/profile/gunther_bachmann</p>
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; bottom: 0; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.banner.trans.32.png); position: fixed; bottom: 3px; right: 50px; width: 114px; height: 32px; z-index:-1;"></div>
+* Continuous Delivery 
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 45px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  "CD bezeichnet eine Sammlung von Techniken, Prozessen und Werkzeugen, die den Softwareauslieferungsprozess (englisch: Deployment)
+  verbessern." (/WikipediA/)
+  #+ATTR_REVEAL: :frag (appear)
+   - Software in kurzen Zyklen produzieren
+   - Stabile Releases jederzeit möglich
+   - Kontinuierlich bauen, testen und produktiv setzen
+  #+BEGIN_NOTES
+  #+END_NOTES
+* Warum?
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 45px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  #+ATTR_REVEAL: :frag (appear)
+  - Frühe Nutzung gebauter Software (Geschäftswert)
+  - Frühes Feedback , schnelle Reaktion auf ...
+    - ... Fehlersituationen
+    - ... Marktbewegungen
+  - Risiko von Fehlentwicklungen minimieren
+  #+BEGIN_NOTES
+  - Weil es *geht*?
+  - Nutzung nach *einem* Sprint
+  #+END_NOTES
+* +Continuous+ Delivery 
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 45px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  #+ATTR_REVEAL: :frag (highlight-red) 
+  - Produktivsetzung 2 - 3 mal im Jahr
+  - Die Tests brauchen Wochen
+  - Die Tests sind durchsetzt mit manuellen Tätigkeiten
+  - Kampf von Entwicklung mit Betrieb
+    - Entwicklungsumgebung ≠ Produktionsumgebung
+    - Testumgebung ≠ Produktionsumgebung
+  #+BEGIN_NOTES
+  - *Möglicherweise* sehen Sie hier etwas, das ihnen *bekannt* vorkommt
+  #+END_NOTES
+# Slide mit wild water
+* 
+  :PROPERTIES:
+  :reveal_background: ./media/St._Francis_River_C-1_Missouri_Whitewater_Championship_2008.jpg
+  :reveal_background_trans: slide
+  :END:
+  #+BEGIN_NOTES
+  - Continuous Delivery ist *anstrengend*
+  - Ob es klappt oder nicht ist *ungewiss*
+  - Man wird auf jedenfall *nass* dabei
+  #+END_NOTES
+* Docker
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 45px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  #+REVEAL_HTML: <h4 style="text-align: center;">Build, Ship, and Run Any App, Anywhere</h4>
+  #+ATTR_REVEAL: :frag (appear)
+  - Entwicklungsumgebung ≈ Produktionsumgebung
+  - Testumgebung ≈ Produktionsumgebung
+  - Automatisierter Produktivsetzungsprozess denkbar
+  - DevOps freundlich 
+  #+BEGIN_NOTES
+  - Ein Tool, um *eine* wesentliche Schwäche auszumerzen
+  - *Details* zu Docker? Wer kann sich unter Docker *nichts* *vorstellen*?
+  - Ansonsten *Tool-landschaft*
+  #+END_NOTES
+** Docker im Detail
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 35px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+   - Linux basiert (Kernel Virtualisierung)
+   - Service Isolation
+   - Komplett via CLI
+   - Ressourcen freundlich
+   - Docker Repositories
+   - Orchestrierungswerkzeuge
+  #+BEGIN_NOTES
+  #+END_NOTES
+** Docker vs. VM
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 35px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+   [[./media/vm_vs_docker.cutted.png]]
+  #+BEGIN_NOTES
+  #+END_NOTES
+# Slide with tools
+* 
+  :PROPERTIES:
+  :reveal_background: ./media/https---xebialabs.com-assets-files-infographics-periodic-table-of-devops-v2.png
+  :reveal_background_trans: slide
+  :END:
+  #+BEGIN_NOTES
+  - Docker ist ein *Tool*
+  - *Viele* weiter spielen eine Rolle
+  #+END_NOTES
+* Automatisierung → Pipeline
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 45px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  #+ATTR_REVEAL: :frag (appear)
+  - Das Programmieren ist (noch) nicht automatisierbar
+  - Das Deployment schon (Pipeline)
+    1. Feature Branch baut, Unit Tests laufen, Metriken stimmen
+    2. Feature Branch merged nach Develop baut, Unit/Integration Tests laufen, Metriken stimmen
+    3. Deployment in das Staging, Integration/Last/Performanz/Security/Akzeptanz Tests laufen
+    4. Deployment in die Produktion (inaktiv), Smoke Tests laufen, Blue/Green Deployment
+    5. Rollback (optional)
+  #+BEGIN_NOTES
+  - *Viele* Schritte, die es alle in sich haben!
+  - Jeder einzelne nutzt (zusätzliche) *Tools*
+  #+END_NOTES
+# Slide with button
+* 
+  :PROPERTIES:
+  :reveal_background: ./media/black-power-button-1428134_1920.png
+  :reveal_background_size: 800px
+  :reveal_background_trans: slide
+  :END:
+  #+BEGIN_NOTES
+  - Am Ende soll es so *einfach* sein
+  - Ich sehe *ungläubige* Gesichter, *zurecht*
+  - Wer ist so *wahnsinnig* SW über einen Knopfdruck produktiv zu nehmen?
+  - Ich muss wohl *weiter* *ausholen*
+  #+END_NOTES
+* Automatisierung von Anfang an
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 45px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  #+ATTR_REVEAL: :frag (appear)
+  - Von Anfang an gesamtes Deployment abbilden. Warum?
+    - SW wird entwickelt, um durch die Pipeline zu kommen
+    - Pipeline funktioniert und wird sukzessive erweitert
+  - Pipeline ist Software (Infrastructure as Code)
+  #+BEGIN_NOTES
+  - *Alles* in *einem* *Sprint*?
+  - Pipeline ist *eigenes* Projekt!
+  #+END_NOTES
+* Zusätzliche Voraussetzungen
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 45px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  #+ATTR_REVEAL: :frag (appear)
+  - Ausgereifter agiler Entwicklungs- *prozess*
+    - Feature Branches / Pull Requests, Repository Organisation
+    - Tickets, Code Reviews, Clean code, Metriken, Pipeline
+  - Testbarkeit
+    - Software wurde *testbar* entwickelt
+    - Einhaltung der Testpyramide, *Testdaten*
+  - Operations
+    - pets vs. cattle
+    - DevOps
+  #+BEGIN_NOTES
+  - *Agile* um *Komplexität* zu beherrschen!
+  - Ist jemand *blass* geworden?
+  - Das ist doch *nicht* *erreichbar*?
+  #+END_NOTES
+** Entwicklungsprozess
+   #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 35px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+   #+REVEAL_HTML: <h4 style="text-align: center;">Agile - Feature Branches / Pull Requests - Code Reviews - Clean Code</h4>
+   - Master-, Develop-, Feature Branch*
+   - Pull Request = Feature → Develop
+   - Release = Develop → Master
+   - Keiner kann allein Code in das Repository bringen
+   - Features können unabhängig abgenommen werden
+   - Annahme von Pull Requests / Definition of Done
+     - Testabdeckung
+     - Code Review
+     - Metriken (Komplexität, ...)
+     - Fachtest
+  #+BEGIN_NOTES
+  - Viel ist in Tools geflossen, die *unterstützen*
+  #+END_NOTES
+** Testbarkeit
+   #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 35px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+   - Test Driven Development (TDD)
+   - Stateless
+   - (Service)-Mocks
+   - Sehr dünner UI Layer (Oberflächentests sind teuer)
+   - Testdatenbereitstellung
+   - *Automatisierung*
+   [[./media/testpyramide.png]]
+  #+BEGIN_NOTES
+  - Testkriterien hängen bereits am Feature / Ticket
+  - Testdaten werden auch mitgeliefert
+  - Tests werden vom Fachbereich formuliert
+  - *Testeditor*
+  #+END_NOTES
+** Betrieb
+   #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 35px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+   - Hohe Automatisierung 
+   - Standardisierung auf Platform-Level (PAAS)
+   - Keine /Snowflake/ Server
+   - Zentrales Monitoring
+   - Zentrales Logging
+  #+BEGIN_NOTES
+  - Keine Abteilungsgrenzen zwischen Dev|Ops
+  #+END_NOTES
+* 
+  :PROPERTIES:
+  :reveal_background: ./media/black-power-button-1428134_1920.png
+  :reveal_background_size: 800px
+  :reveal_background_trans: slide
+  :END:
+  #+BEGIN_NOTES
+  - Sind alle dieser Hürden genommen, dann ...
+  - Sind nicht alle genommen, so kann doch viel erreicht werden
+  #+END_NOTES
+* Vielen Dank
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 45px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  #+REVEAL_HTML: <h4>für ihre Aufmerksamkeit</h4>
+  #+BEGIN_NOTES
+  - Viele Themen leider nur *angerissen*
+  - *Organisatorische* Hürden womöglich noch *schwieriger* zu überwinden
+  - Ich freue mich auf *spannende* Diskussionen
+  #+END_NOTES
+* Bild Referenzen 1/2
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 45px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  - Folie "Docker vs. VM",
+    Urheber:  Viktor Farcic,
+    Quelle: The DevOps 2.0 Toolkit - Cloudbees, 2016
+  - Folie "start button",
+    Quelle: pixabay.com,
+    Link: https://pixabay.com/de/black-power-taste-ein-ausschalter-1428134/
+  - Folie "periodic table of devops tools",
+    Link: https://xebialabs.com/periodic-table-of-devops-tools/
+  - Folie "Whitewater Championship",
+    Urheber: Christopher J. Amelung,
+    Quelle: Wikipedia,
+    Link: https://de.wikipedia.org/wiki/Datei:St._Francis_River_C-1_Missouri_Whitewater_Championship_2008. jpg
+* Bild Referenzen 2/2
+  #+REVEAL_HTML: <div style="background: url(./media/itemis.logo.32.faded.png); position: fixed; top: 45px; right: 0; width: 32px; height: 32px; z-index:-1;"></div>
+  - Folie "Testbarkeit",
+    Urheber: Johnny Graber,
+    Link: https://graberj.wordpress.com/2013/03/10/die-testpyramide/

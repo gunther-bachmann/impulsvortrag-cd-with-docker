@@ -1,0 +1,2 @@
+author: xebialabs
+link: https://xebialabs.com/periodic-table-of-devops-tools/

@@ -1,0 +1,1 @@
+reference: The DevOps 2.0 Toolkit - Cloudbees, (c) 2016 Viktor Farcic
