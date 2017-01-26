@@ -22,3 +22,4 @@
 
 (install-packages)
 (require 'ox-reveal)
+(setq org-reveal-root "./reveal.js")
