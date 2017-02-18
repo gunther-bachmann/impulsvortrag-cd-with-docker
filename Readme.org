@@ -1,3 +1,4 @@
+[[https://travis-ci.org/gunther-bachmann/impulsvortrag-cd-with-docker][https://travis-ci.org/gunther-bachmann/impulsvortrag-cd-with-docker.png?branch=master]]
 * Impulsvortrag: Continuous Delivery with Docker
   In order to build the presentation do the following
   - install current version of [[https://github.com/yjwen/org-reveal][reveal.js]] into the folder ./reveal.js 
